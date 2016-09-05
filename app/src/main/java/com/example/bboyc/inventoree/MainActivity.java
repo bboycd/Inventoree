@@ -19,8 +19,7 @@ public class MainActivity extends AppCompatActivity {
     Animation fab_close, fab_open, rotate_anticlockwise, rotate_clockwise;
     boolean isOpen = false;
     RecyclerView recyclerView;
-    MyCustomAdapter adapter;
-    DatabaseHelper mDbHelper = new DatabaseHelper(getContext());
+    DatabaseAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         recyclerView = (RecyclerView) findViewById(R.id.recycleView);
-        adapter = new MyCustomAdapter(this, );
+        adapter = new DatabaseAdapter();
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 

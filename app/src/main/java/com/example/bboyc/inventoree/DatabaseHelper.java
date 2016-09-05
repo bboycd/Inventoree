@@ -28,9 +28,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     COLUMN_NAME_TITLE + TEXT_TYPE + COMMA_SEP +
                     COLUMN_NAME_DETAIL + TEXT_TYPE + " )";
 
-    private static final String SQL_DELETE_ENTRIES =
-            "DROP TABLE IF EXISTS " + TABLE_NAME;
-
     private static DatabaseHelper mInstance;
 
     public static DatabaseHelper getInstance(Context context) {
@@ -52,6 +49,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS" + TABLE_NAME);
         onCreate(db);
     }
+
+    /**
+     *
+     * @param inventory C.R.U.D. OPERATIONS
+     */
 
     public void addInventory(Inventory inventory) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -99,7 +101,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String selectQuery = "SELECT * FROM " + TABLE_NAME;
 
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor db.rawQuery(selectQuery,null);
+        Cursor cursor = db.rawQuery(selectQuery,null);
 
         if (cursor.moveToFirst()) {
             do {
@@ -120,8 +122,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cursor.close();
         return cursor.getCount();
     }
-    @Override
-    public SQLiteDatabase getWritableDatabase() {
-        return super.getWritableDatabase();
+    public void deleteInventory(Inventory inventory) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_NAME, COL_ID + "=?",
+                new String[]{String.valueOf(inventory.getId())});
+        db.close();
     }
 }
