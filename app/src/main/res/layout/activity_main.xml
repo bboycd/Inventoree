@@ -24,12 +24,62 @@
     <include layout="@layout/content_main" />
 
     <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_wardrobe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginRight="@dimen/fab_margin"
+        android:layout_marginBottom="310dp"
+        android:elevation="6dp"
+        app:pressedTranslationZ="12dp"
+        android:src="@android:drawable/ic_menu_myplaces"
+        app:backgroundTint="@android:color/holo_red_dark" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_books"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginRight="@dimen/fab_margin"
+        android:layout_marginBottom="240dp"
+        android:elevation="6dp"
+        app:pressedTranslationZ="12dp"
+        android:src="@drawable/abc_ic_menu_copy_mtrl_am_alpha"
+        app:backgroundTint="@android:color/holo_green_light" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_electronics"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginRight="@dimen/fab_margin"
+        android:layout_marginBottom="170dp"
+        android:elevation="6dp"
+        app:pressedTranslationZ="12dp"
+        android:src="@android:drawable/ic_dialog_info"
+        app:backgroundTint="@android:color/holo_purple" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_media"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginRight="@dimen/fab_margin"
+        android:layout_marginBottom="100dp"
+        android:elevation="6dp"
+        app:pressedTranslationZ="12dp"
+
+        android:src="@android:drawable/ic_media_play"
+        app:backgroundTint="@android:color/holo_blue_light" />
+
+    <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
-        android:elevation="10dp"
+        android:elevation="6dp"
+        app:pressedTranslationZ="12dp"
         android:src="@android:drawable/ic_input_add" />
 
 </android.support.design.widget.CoordinatorLayout>
