@@ -18,8 +18,9 @@ public class MainActivity extends AppCompatActivity {
     FloatingActionButton fab_books, fab_wardrobe, fab_electronics, fab_media, fab;
     Animation fab_close, fab_open, rotate_anticlockwise, rotate_clockwise;
     boolean isOpen = false;
-
     RecyclerView recyclerView;
+    MyCustomAdapter adapter;
+    DatabaseHelper mDbHelper = new DatabaseHelper(getContext());
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +28,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        recyclerView = (RecyclerView) findViewById(R.id.recycleView);
+        adapter = new MyCustomAdapter(this, );
+
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
 
 
