@@ -3,6 +3,7 @@ package com.example.bboyc.inventoree;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -21,6 +22,8 @@ public class MainActivity extends AppCompatActivity {
     boolean isOpen = false;
     RecyclerView recyclerView;
     SimpleCursorRecyclerAdapter adapter;
+    FragmentManager fragmentManager = getSupportFragmentManager();
+    DatabaseHelper databaseHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,12 +32,28 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        DatabaseHelper.getInstance(this);
+
 
         recyclerView = (RecyclerView) findViewById(R.id.recycleView);
 
         adapter = new SimpleCursorRecyclerAdapter() {
             @Override
             public void onBindViewHolderCursor(SimpleViewHolder holder, Cursor cursor) {
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View view) {
+
+
+                }
+            });
+                holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                    @Override
+                    public boolean onLongClick(View view) {
+                        return true;
+                    }
+                });
 
 
             }
@@ -96,6 +115,13 @@ public class MainActivity extends AppCompatActivity {
 
                     isOpen = true;
                 }
+            }
+        });
+        fab_books.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog dialog = new dialog();
+                dialog.show(fragmentManager, "Alert Dialog Fragment");
             }
         });
     }
