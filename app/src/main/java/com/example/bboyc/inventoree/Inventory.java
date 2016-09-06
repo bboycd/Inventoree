@@ -1,6 +1,6 @@
 package com.example.bboyc.inventoree;
 
-public final class Inventory {
+public class Inventory {
 
     int id;
     String name;
@@ -42,6 +42,7 @@ public final class Inventory {
     public void setDetail(String detail) {
         this.detail = detail;
     }
+
 
 
 }

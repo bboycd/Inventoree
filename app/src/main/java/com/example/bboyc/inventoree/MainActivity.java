@@ -1,5 +1,6 @@
 package com.example.bboyc.inventoree;
 
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -19,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
     Animation fab_close, fab_open, rotate_anticlockwise, rotate_clockwise;
     boolean isOpen = false;
     RecyclerView recyclerView;
-    DatabaseAdapter adapter;
+    SimpleCursorRecyclerAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +30,16 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         recyclerView = (RecyclerView) findViewById(R.id.recycleView);
-        adapter = new DatabaseAdapter();
+
+        adapter = new SimpleCursorRecyclerAdapter() {
+            @Override
+            public void onBindViewHolderCursor(SimpleViewHolder holder, Cursor cursor) {
+
+
+            }
+        };
+
+        recyclerView.setAdapter(adapter);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
