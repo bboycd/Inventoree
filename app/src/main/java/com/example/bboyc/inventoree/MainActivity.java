@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+
         recyclerView = (RecyclerView) findViewById(R.id.recycleView);
 
         adapter = new SimpleCursorRecyclerAdapter() {
