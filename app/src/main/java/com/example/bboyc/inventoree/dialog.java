@@ -34,14 +34,14 @@ public class dialog extends DialogFragment {
 
 
             }
-        })
+        });
 
-                // Negative Button
-                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+
+                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         // Do something else
                     }
-                })
-                .create();
+                });
+                return builder.create();
     }
 }
