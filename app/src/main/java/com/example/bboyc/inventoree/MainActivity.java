@@ -23,11 +23,13 @@ public class MainActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
     DbCursorAdapter adapter;
-    Cursor cursor;
     FragmentManager fragmentManager = getSupportFragmentManager();
 
-
-
+    public void populateView(){
+        Cursor cursor = DatabaseHelper.getInstance(this).getAllInventory();
+//        DatabaseUtils.dumpCursor(cursor);
+        adapter.changeCursor(cursor);
+    }
 
 
 
@@ -38,14 +40,11 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-//        Cursor cursor = DatabaseHelper.getInstance(this).getAllInventory();
-        cursor = DatabaseHelper.getInstance(this).getAllInventory();
-
-//        DbCursorAdapter adapter = new DbCursorAdapter(this, cursor);
-        adapter = new DbCursorAdapter(this, cursor);
+        adapter = new DbCursorAdapter(this, null);
         recyclerView = (RecyclerView) findViewById(R.id.recycleView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
+        populateView();
 
         //ANIMATION LAYOUTS
         fab_close = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_close);
@@ -102,8 +101,8 @@ public class MainActivity extends AppCompatActivity {
         fab_books.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                dialog dialog = new dialog();
-                dialog.show(fragmentManager, "Alert Dialog Fragment");
+                Fragment_dialog Fragment_dialog = new Fragment_dialog();
+                Fragment_dialog.show(fragmentManager, "Alert Dialog Fragment");
             }
         });
     }
@@ -116,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
+        // search bar
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }

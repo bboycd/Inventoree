@@ -11,7 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
 
-public class dialog extends DialogFragment {
+public class Fragment_dialog extends DialogFragment {
 
 
 
@@ -48,6 +48,8 @@ public class dialog extends DialogFragment {
                         editDetail.getText().toString(),
                         editYear.getText().toString());
 
+                if(getActivity() instanceof MainActivity) ((MainActivity)getActivity()).populateView();
+
                 Log.e("LOG", editName.getText().toString());
                 Log.e("LOG", editDetail.getText().toString());
 
@@ -56,7 +58,7 @@ public class dialog extends DialogFragment {
 
                 builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
-                        dialog.this.getDialog().cancel();
+                        Fragment_dialog.this.getDialog().cancel();
                     }
                 });
 
