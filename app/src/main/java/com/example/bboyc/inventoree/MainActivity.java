@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     DbCursorAdapter adapter;
     FragmentManager fragmentManager = getSupportFragmentManager();
-    DatabaseHelper databaseHelper;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -25,7 +25,7 @@ public class dialog extends DialogFragment {
 
         final View view = inflater.inflate(R.layout.fragment_dialog, null);
 
-        final DatabaseHelper helper = DatabaseHelper.getInstance(getContext());
+        final DatabaseHelper databaseHelper = DatabaseHelper.getInstance(getContext());
 
 
 
@@ -42,7 +42,9 @@ public class dialog extends DialogFragment {
                 editName = (EditText) view.findViewById(R.id.dialog_editTextName);
                 editDetail = (EditText) view.findViewById(R.id.dialog_editTextDetail);
 
-                helper.addInventory(editName.getText().toString(),editDetail.getText().toString());
+                databaseHelper.addInventory(editName.getText().toString(),editDetail.getText().toString());
+
+
 
 
 

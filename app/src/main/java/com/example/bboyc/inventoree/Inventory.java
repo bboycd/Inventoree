@@ -5,19 +5,6 @@ public class Inventory {
     int id;
     String name;
     String detail;
-    public Inventory() {
-    }
-
-    public Inventory(int id, String name, String detail) {
-        this.id = id;
-        this.name = name;
-        this.detail = detail;
-    }
-
-    public Inventory(String name, String detail) {
-        this.name = name;
-        this.detail = detail;
-    }
 
     public int getId() {
         return id;
@@ -42,8 +29,8 @@ public class Inventory {
     public void setDetail(String detail) {
         this.detail = detail;
     }
-
-
-
+//    public static Inventory fromCursor(Cursor cursor){
+//
+//    }
 }
 

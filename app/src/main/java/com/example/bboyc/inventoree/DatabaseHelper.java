@@ -96,18 +96,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             cursor.moveToFirst();
         return cursor;
     }
-//    public ArrayList<String> getAllInventory() {
-//        ArrayList<String> array_list = new ArrayList<String>();
-//        SQLiteDatabase db = this.getReadableDatabase();
-//        Cursor cursor = db.rawQuery("SELECT * FROM INVENTORY", null);
-//        cursor.moveToFirst();
-//        while(cursor.isAfterLast() == false){
-//            array_list.add(cursor.getString(cursor.getColumnIndex(COLUMN_NAME_TITLE)));
-//            cursor.moveToNext();
-//        }
-//        return array_list;
-//
-//    }
 
     public Cursor getAllInventory() {
         SQLiteDatabase db = this.getReadableDatabase();
