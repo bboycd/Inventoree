@@ -12,8 +12,7 @@ import android.view.View;
 import android.widget.EditText;
 
 public class dialog extends DialogFragment {
-//    DatabaseHelper databaseHelper;
-//    SQLiteDatabase sqLiteDatabase;
+
 
 
     @NonNull
@@ -29,6 +28,7 @@ public class dialog extends DialogFragment {
 
 
 
+
         builder.setView(view);
         builder.setIcon(R.mipmap.ic_launcher);
         builder.setTitle("Books");
@@ -37,33 +37,29 @@ public class dialog extends DialogFragment {
             public void onClick(DialogInterface dialog, int which) {
 
 
-                EditText editName, editDetail;
+                EditText editName, editDetail, editYear;
 
                 editName = (EditText) view.findViewById(R.id.dialog_editTextName);
                 editDetail = (EditText) view.findViewById(R.id.dialog_editTextDetail);
+                editYear = (EditText) view.findViewById(R.id.dialog_editTextYear);
 
-                databaseHelper.addInventory(editName.getText().toString(),editDetail.getText().toString());
-
-
-
-
-
+                databaseHelper.addInventory(
+                        editName.getText().toString(),
+                        editDetail.getText().toString(),
+                        editYear.getText().toString());
 
                 Log.e("LOG", editName.getText().toString());
                 Log.e("LOG", editDetail.getText().toString());
 
-
-
-
             }
         });
-
 
                 builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.this.getDialog().cancel();
                     }
                 });
+
                 return builder.create();
     }
 }

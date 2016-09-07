@@ -20,9 +20,15 @@ public class MainActivity extends AppCompatActivity {
     FloatingActionButton fab_books, fab_wardrobe, fab_electronics, fab_media, fab;
     Animation fab_close, fab_open, rotate_anticlockwise, rotate_clockwise;
     boolean isOpen = false;
+
     RecyclerView recyclerView;
     DbCursorAdapter adapter;
+    Cursor cursor;
     FragmentManager fragmentManager = getSupportFragmentManager();
+
+
+
+
 
 
     @Override
@@ -31,20 +37,15 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        Cursor cursor = DatabaseHelper.getInstance(this).getAllInventory();
 
+//        Cursor cursor = DatabaseHelper.getInstance(this).getAllInventory();
+        cursor = DatabaseHelper.getInstance(this).getAllInventory();
 
-        recyclerView = (RecyclerView) findViewById(R.id.recycleView);
-
+//        DbCursorAdapter adapter = new DbCursorAdapter(this, cursor);
         adapter = new DbCursorAdapter(this, cursor);
-
-
-
-        recyclerView.setAdapter(adapter);
-
+        recyclerView = (RecyclerView) findViewById(R.id.recycleView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-
+        recyclerView.setAdapter(adapter);
 
         //ANIMATION LAYOUTS
         fab_close = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_close);
@@ -105,6 +106,12 @@ public class MainActivity extends AppCompatActivity {
                 dialog.show(fragmentManager, "Alert Dialog Fragment");
             }
         });
+    }
+
+    @Override
+    protected void onResume(){
+        super.onResume();
+
     }
 
     @Override

@@ -18,15 +18,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String TABLE_NAME = "INVENTORY";
     public static final String COLUMN_NAME_TITLE = "NAME";
     public static final String COLUMN_NAME_DETAIL = "DETAIL";
+    public static final String COLUMN_NAME_YEAR = "YEAR";
     private static final String TEXT_TYPE = " TEXT";
     private static final String COMMA_SEP = ",";
 
-    public static final String[] COLUMNS = {COL_ID, COLUMN_NAME_TITLE, COLUMN_NAME_DETAIL};
+    public static final String[] COLUMNS = {COL_ID, COLUMN_NAME_TITLE, COLUMN_NAME_DETAIL, COLUMN_NAME_YEAR};
 
     private static final String SQL_CREATE_ENTRIES =
             "CREATE TABLE " + TABLE_NAME + " (" +COL_ID+ " INTEGER PRIMARY KEY," +
                     COLUMN_NAME_TITLE + TEXT_TYPE + COMMA_SEP +
-                    COLUMN_NAME_DETAIL + TEXT_TYPE + " )";
+                    COLUMN_NAME_DETAIL + TEXT_TYPE + COMMA_SEP + COLUMN_NAME_YEAR + TEXT_TYPE + " )";
 
     private static DatabaseHelper instance;
 
@@ -57,23 +58,25 @@ public class DatabaseHelper extends SQLiteOpenHelper {
      *          C.R.U.D. OPERATIONS
      */
 
-    public void addInventory(String name, String detail) {
+    public void addInventory(String name, String detail, String year) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
         values.put(COLUMN_NAME_TITLE, name);
         values.put(COLUMN_NAME_DETAIL, detail);
+        values.put(COLUMN_NAME_YEAR, year);
 
         db.insert(TABLE_NAME, null, values);
         db.close();
     }
 
-    public boolean updateInventory(int id, String name, String detail) {
+    public boolean updateInventory(int id, String name, String detail, String year) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
         values.put(COLUMN_NAME_TITLE, name);
         values.put(COLUMN_NAME_DETAIL, detail);
+        values.put(COLUMN_NAME_YEAR, year);
 
         db.update(TABLE_NAME, values, COL_ID + "=?",
                 new String[]{ String.valueOf(id)});
@@ -102,6 +105,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery("SELECT * FROM INVENTORY", null);
         DatabaseUtils.dumpCursor(cursor);
         return cursor;
+
     }
 
     public int getInventoryCount() {
