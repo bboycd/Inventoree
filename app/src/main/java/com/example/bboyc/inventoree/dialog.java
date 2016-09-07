@@ -42,14 +42,13 @@ public class dialog extends DialogFragment {
                 editName = (EditText) view.findViewById(R.id.dialog_editTextName);
                 editDetail = (EditText) view.findViewById(R.id.dialog_editTextDetail);
 
-                helper.addThing(editName.getText().toString(),editDetail.getText().toString());
+                helper.addInventory(editName.getText().toString(),editDetail.getText().toString());
 
 
 
 
                 Log.e("LOG", editName.getText().toString());
                 Log.e("LOG", editDetail.getText().toString());
-                Log.e("LOG2", "WTF YO");
 
 
 

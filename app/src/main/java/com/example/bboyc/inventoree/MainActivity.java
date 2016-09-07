@@ -39,8 +39,12 @@ public class MainActivity extends AppCompatActivity {
 
         adapter = new SimpleCursorRecyclerAdapter() {
             @Override
-            public void onBindViewHolderCursor(SimpleViewHolder holder, Cursor cursor) {
+            public DatabaseHelper onBindViewHolderCursor(final SimpleViewHolder holder, final Cursor cursor) {
             holder.itemView.setOnClickListener(new View.OnClickListener() {
+                DatabaseHelper databaseHelper = adapter.onBindViewHolderCursor(holder, cursor);
+                 SimpleCursorRecyclerAdapter.OnBindViewHolder(null);
+
+
 
 
                 @Override

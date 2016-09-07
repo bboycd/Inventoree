@@ -7,7 +7,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
@@ -46,8 +45,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(SQL_CREATE_ENTRIES);
 
-        insert(db,1,"Hello", "Bye");
-
 
     }
     @Override
@@ -56,62 +53,35 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-//    /**
-//     *
-//     * @param inventory C.R.U.D. OPERATIONS
-//     */
+    /**
+     *
+     *          C.R.U.D. OPERATIONS
+     */
 
-    public void insert(SQLiteDatabase db, int id, String name, String detail){
-        ContentValues values = new ContentValues();
-
-        values.put(COL_ID, id);
-        values.put(COLUMN_NAME_TITLE, name);
-        values.put(COLUMN_NAME_DETAIL,detail);
-
-        db.insert(TABLE_NAME, null, values);
-
-    }
-
-    public void addThing(String name, String detail){
-
-        ContentValues values = new ContentValues();
-
-        values.put(COLUMN_NAME_TITLE, name);
-        values.put(COLUMN_NAME_DETAIL, detail);
-
-        SQLiteDatabase database = getWritableDatabase();
-
-        database.insert(TABLE_NAME, null, values);
-
-        database.close();
-
-
-
-    }
-
-//    public void addInventory(Inventory inventory) {
-//        SQLiteDatabase db = this.getWritableDatabase();
-//
-//        ContentValues values = new ContentValues();
-//        values.put(COLUMN_NAME_TITLE, inventory.getName());
-//        values.put(COLUMN_NAME_DETAIL, inventory.getDetail());
-//
-//        db.insert(TABLE_NAME, null, values);
-//        db.close();
-//    }
-
-    public int updateInventory(Inventory inventory) {
+    public void addInventory(String name, String detail) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put(COLUMN_NAME_TITLE, inventory.getName());
-        values.put(COLUMN_NAME_DETAIL, inventory.getDetail());
+        values.put(COLUMN_NAME_TITLE, name);
+        values.put(COLUMN_NAME_DETAIL, detail);
 
-        return db.update(TABLE_NAME, values, COL_ID + "=?",
-                new String[]{ String.valueOf(inventory.getId())});
+        db.insert(TABLE_NAME, null, values);
+        db.close();
     }
 
-    public Inventory getInventory(int id){
+    public boolean updateInventory(int id, String name, String detail) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_NAME_TITLE, name);
+        values.put(COLUMN_NAME_DETAIL, detail);
+
+        db.update(TABLE_NAME, values, COL_ID + "=?",
+                new String[]{ String.valueOf(id)});
+        return true;
+    }
+
+    public Cursor getInventory(int id){
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.query(TABLE_NAME,
@@ -125,29 +95,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 null);
         if (cursor != null)
             cursor.moveToFirst();
-
-        Inventory inventory = new Inventory(Integer.parseInt(cursor.getString(0)),
-                cursor.getString(1), cursor.getString(2));
-        return inventory;
+        return cursor;
     }
-    public List<Inventory> getAllInventory() {
-        List<Inventory> inventoryList = new ArrayList<Inventory>();
-        String selectQuery = "SELECT * FROM " + TABLE_NAME;
-
-        SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery(selectQuery,null);
-
-        if (cursor.moveToFirst()) {
-            do {
-                Inventory inventory = new Inventory();
-                inventory.setId(Integer.parseInt(cursor.getString(0)));
-                inventory.setName(cursor.getString(1));
-                inventory.setDetail(cursor.getString(2));
-
-                inventoryList.add(inventory);
-            } while (cursor.moveToNext());
+    public ArrayList<String> getAllInventory() {
+        ArrayList<String> array_list = new ArrayList<String>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM INVENTORY", null);
+        cursor.moveToFirst();
+        while(cursor.isAfterLast() == false){
+            array_list.add(cursor.getString(cursor.getColumnIndex(COLUMN_NAME_TITLE)));
+            cursor.moveToNext();
         }
-        return inventoryList;
+        return array_list;
     }
     public int getInventoryCount() {
         String countQuery = "SELECT * FROM " + TABLE_NAME;
@@ -156,10 +115,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cursor.close();
         return cursor.getCount();
     }
-    public void deleteInventory(Inventory inventory) {
+    public void deleteInventory(int id) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_NAME, COL_ID + "=?",
-                new String[]{String.valueOf(inventory.getId())});
+                new String[]{String.valueOf(id)});
         db.close();
     }
 
