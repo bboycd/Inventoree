@@ -3,10 +3,9 @@ package com.example.bboyc.inventoree;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-
-import java.util.ArrayList;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
@@ -97,17 +96,26 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             cursor.moveToFirst();
         return cursor;
     }
-    public ArrayList<String> getAllInventory() {
-        ArrayList<String> array_list = new ArrayList<String>();
+//    public ArrayList<String> getAllInventory() {
+//        ArrayList<String> array_list = new ArrayList<String>();
+//        SQLiteDatabase db = this.getReadableDatabase();
+//        Cursor cursor = db.rawQuery("SELECT * FROM INVENTORY", null);
+//        cursor.moveToFirst();
+//        while(cursor.isAfterLast() == false){
+//            array_list.add(cursor.getString(cursor.getColumnIndex(COLUMN_NAME_TITLE)));
+//            cursor.moveToNext();
+//        }
+//        return array_list;
+//
+//    }
+
+    public Cursor getAllInventory() {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM INVENTORY", null);
-        cursor.moveToFirst();
-        while(cursor.isAfterLast() == false){
-            array_list.add(cursor.getString(cursor.getColumnIndex(COLUMN_NAME_TITLE)));
-            cursor.moveToNext();
-        }
-        return array_list;
+        DatabaseUtils.dumpCursor(cursor);
+        return cursor;
     }
+
     public int getInventoryCount() {
         String countQuery = "SELECT * FROM " + TABLE_NAME;
         SQLiteDatabase db = this.getReadableDatabase();

@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
     Animation fab_close, fab_open, rotate_anticlockwise, rotate_clockwise;
     boolean isOpen = false;
     RecyclerView recyclerView;
-    SimpleCursorRecyclerAdapter adapter;
+    DbCursorAdapter adapter;
     FragmentManager fragmentManager = getSupportFragmentManager();
     DatabaseHelper databaseHelper;
 
@@ -31,38 +31,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        DatabaseHelper.getInstance(this);
+        Cursor cursor = DatabaseHelper.getInstance(this).getAllInventory();
 
 
         recyclerView = (RecyclerView) findViewById(R.id.recycleView);
 
-        adapter = new SimpleCursorRecyclerAdapter() {
-            @Override
-            public DatabaseHelper onBindViewHolderCursor(final SimpleViewHolder holder, final Cursor cursor) {
-            holder.itemView.setOnClickListener(new View.OnClickListener() {
-                DatabaseHelper databaseHelper = adapter.onBindViewHolderCursor(holder, cursor);
-                 SimpleCursorRecyclerAdapter.OnBindViewHolder(null);
+        adapter = new DbCursorAdapter(this, cursor);
 
 
-
-
-                @Override
-                public void onClick(View view) {
-
-
-                }
-            });
-                holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
-                    @Override
-                    public boolean onLongClick(View view) {
-                        return true;
-                    }
-                });
-
-
-            }
-        };
 
         recyclerView.setAdapter(adapter);
 
