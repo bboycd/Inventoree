@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
             public void onBindViewHolderCursor(SimpleViewHolder holder, Cursor cursor) {
             holder.itemView.setOnClickListener(new View.OnClickListener() {
 
+
                 @Override
                 public void onClick(View view) {
 

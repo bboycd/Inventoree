@@ -11,9 +11,11 @@ import java.util.List;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
-
+        //DATABASE PROPERTIES
     public static final int DATABASE_VERSION = 1;
     public static final String DATABASE_NAME = "DB";
+
+        //DATABASE COLUMNS
     public static final String COL_ID = "_ID";
     public static final String TABLE_NAME = "INVENTORY";
     public static final String COLUMN_NAME_TITLE = "NAME";
@@ -28,13 +30,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     COLUMN_NAME_TITLE + TEXT_TYPE + COMMA_SEP +
                     COLUMN_NAME_DETAIL + TEXT_TYPE + " )";
 
-    private static DatabaseHelper mInstance;
+    private static DatabaseHelper instance;
 
     public static DatabaseHelper getInstance(Context context) {
-        if(mInstance == null) {
-            mInstance = new DatabaseHelper(context.getApplicationContext());
+        if(instance == null) {
+            instance = new DatabaseHelper(context.getApplicationContext());
         }
-        return mInstance;
+        return instance;
     }
 
     public DatabaseHelper(Context context) {
@@ -43,6 +45,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(SQL_CREATE_ENTRIES);
+
+        insert(db,1,"Hello", "Bye");
+
+
     }
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
@@ -50,21 +56,49 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    /**
-     *
-     * @param inventory C.R.U.D. OPERATIONS
-     */
+//    /**
+//     *
+//     * @param inventory C.R.U.D. OPERATIONS
+//     */
 
-    public void addInventory(Inventory inventory) {
-        SQLiteDatabase db = this.getWritableDatabase();
-
+    public void insert(SQLiteDatabase db, int id, String name, String detail){
         ContentValues values = new ContentValues();
-        values.put(COLUMN_NAME_TITLE, inventory.getName());
-        values.put(COLUMN_NAME_DETAIL, inventory.getDetail());
+
+        values.put(COL_ID, id);
+        values.put(COLUMN_NAME_TITLE, name);
+        values.put(COLUMN_NAME_DETAIL,detail);
 
         db.insert(TABLE_NAME, null, values);
-        db.close();
+
     }
+
+    public void addThing(String name, String detail){
+
+        ContentValues values = new ContentValues();
+
+        values.put(COLUMN_NAME_TITLE, name);
+        values.put(COLUMN_NAME_DETAIL, detail);
+
+        SQLiteDatabase database = getWritableDatabase();
+
+        database.insert(TABLE_NAME, null, values);
+
+        database.close();
+
+
+
+    }
+
+//    public void addInventory(Inventory inventory) {
+//        SQLiteDatabase db = this.getWritableDatabase();
+//
+//        ContentValues values = new ContentValues();
+//        values.put(COLUMN_NAME_TITLE, inventory.getName());
+//        values.put(COLUMN_NAME_DETAIL, inventory.getDetail());
+//
+//        db.insert(TABLE_NAME, null, values);
+//        db.close();
+//    }
 
     public int updateInventory(Inventory inventory) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -128,4 +162,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 new String[]{String.valueOf(inventory.getId())});
         db.close();
     }
+
+
 }
