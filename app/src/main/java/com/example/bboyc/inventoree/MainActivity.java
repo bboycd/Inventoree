@@ -1,4 +1,5 @@
 package com.example.bboyc.inventoree;
+
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
@@ -18,6 +19,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     FloatingActionButton fab_books, fab_wardrobe, fab_electronics, fab_media, fab;
@@ -147,9 +149,18 @@ public class MainActivity extends AppCompatActivity {
 
         return true;
     }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        handleIntent(intent);
+    }
+
     private void handleIntent(Intent intent){
         if (Intent.ACTION_SEARCH.equals(intent.getAction())){
             String query = intent.getStringExtra(SearchManager.QUERY);
+            DatabaseHelper.getInstance(this).getInventory(query);
+            Toast.makeText(MainActivity.this,"Searching for " +query,Toast.LENGTH_SHORT).show();
+
 
         }
     }

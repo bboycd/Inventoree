@@ -83,14 +83,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return true;
     }
 
-    public Cursor getInventory(int id){
+    public Cursor getInventory(String query){
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.query(TABLE_NAME,
                 new String[]
                         {String.valueOf(COLUMNS)},
                 COL_ID + "=?",
-                new String[] {String.valueOf(id) },
+                new String[] {query},
                 null,
                 null,
                 null,
