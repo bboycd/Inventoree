@@ -41,8 +41,7 @@ public class DbCursorAdapter extends CursorRecyclerViewAdapter<DbCursorAdapter.V
         viewHolder.TextViewName.setText(cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_NAME_TITLE)));
         viewHolder.TextViewDetail.setText(cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_NAME_DETAIL)));
         viewHolder.TextViewYear.setText(cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_NAME_YEAR)));
-//        MyListItem myListItem = MyListItem.fromCursor(cursor);
-//        viewHolder.mTextView.setText(myListItem.getName());
+
     }
 }
 
