@@ -108,6 +108,27 @@ public class MainActivity extends AppCompatActivity {
                 Fragment_dialog.show(fragmentManager, "Alert Dialog Fragment");
             }
         });
+        fab_media.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Fragment_dialog Fragment_dialog = new Fragment_dialog();
+                Fragment_dialog.show(fragmentManager, "Alert Dialog Fragment");
+            }
+        });
+        fab_electronics.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Fragment_dialog Fragment_dialog = new Fragment_dialog();
+                Fragment_dialog.show(fragmentManager, "Alert Dialog Fragment");
+            }
+        });
+        fab_wardrobe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Fragment_dialog Fragment_dialog = new Fragment_dialog();
+                Fragment_dialog.show(fragmentManager, "Alert Dialog Fragment");
+            }
+        });
     }
 
 
