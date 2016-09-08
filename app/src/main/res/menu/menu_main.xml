@@ -14,11 +14,6 @@
         app:showAsAction="collapseActionView|ifRoom"
         app:actionViewClass="android.support.v7.widget.SearchView" />
     <item
-        android:id="@+id/linearViewHorizontal"
-        android:title="Linear View Horizontal"
-        android:orderInCategory="100"
-        app:showAsAction="never"/>
-    <item
         android:id="@+id/linearViewVertical"
         android:title="Linear View Vertical"
         android:orderInCategory="100"
@@ -28,11 +23,7 @@
         android:title="Grid View"
         android:orderInCategory="100"
         app:showAsAction="never"/>
-    <item
-        android:id="@+id/staggeredViewHorizontal"
-        android:title="Staggered View Horizontal"
-        android:orderInCategory="100"
-        app:showAsAction="never"/>
+
     <item
         android:id="@+id/staggeredViewVertical"
         android:title="Staggered View Vertical"

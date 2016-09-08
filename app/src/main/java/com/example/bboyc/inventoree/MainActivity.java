@@ -51,6 +51,14 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
         populateView();
 
+//    CardView cardView = (CardView) findViewById(R.id.cardView);
+//        cardView.setOnLongClickListener(new View.OnLongClickListener() {
+//            @Override
+//            public boolean onLongClick(View view) {
+//                Toast.makeText(MainActivity.this,"clicked",Toast.LENGTH_SHORT).show();
+//                return false;
+//            }
+//        });
 
         //ANIMATION LAYOUTS
         fab_close = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_close);
@@ -134,7 +142,10 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-
+//    public void cardClicked(View view) {
+//        Intent intent new Intent(this, FullscreenActivity.class);
+//        intent.putExtra()
+//    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -171,11 +182,6 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
         //LAYOUTS & ORIENTATIONS
         switch (id){
-            case R.id.linearViewHorizontal:
-                LinearLayoutManager mLinearLayoutManagerHorizontal = new LinearLayoutManager(this);
-                mLinearLayoutManagerHorizontal.setOrientation(LinearLayoutManager.HORIZONTAL);
-                recyclerView.setLayoutManager(mLinearLayoutManagerHorizontal);
-                break;
             case R.id.linearViewVertical:
                 LinearLayoutManager mLinearLayoutManagerVertical = new LinearLayoutManager(this);
                 mLinearLayoutManagerVertical.setOrientation(LinearLayoutManager.VERTICAL);
@@ -184,10 +190,6 @@ public class MainActivity extends AppCompatActivity {
             case R.id.gridView:
                 GridLayoutManager mGridLayoutManager = new GridLayoutManager(this, 2);
                 recyclerView.setLayoutManager(mGridLayoutManager);
-                break;
-            case R.id.staggeredViewHorizontal:
-                StaggeredGridLayoutManager mStaggeredHorizontalLayoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.HORIZONTAL);
-                recyclerView.setLayoutManager(mStaggeredHorizontalLayoutManager);
                 break;
             case R.id.staggeredViewVertical:
                 StaggeredGridLayoutManager mStaggeredVerticalLayoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);

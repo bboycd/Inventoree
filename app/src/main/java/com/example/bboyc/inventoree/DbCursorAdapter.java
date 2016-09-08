@@ -1,6 +1,7 @@
 package com.example.bboyc.inventoree;
 
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -11,9 +12,15 @@ import android.widget.TextView;
 
 public class DbCursorAdapter extends CursorRecyclerViewAdapter<DbCursorAdapter.ViewHolder> {
 
+    private DatabaseHelper db;
+    private Context context;
+    public Cursor cursor;
+
     public DbCursorAdapter(Context context, Cursor cursor) {
+
         super(context, cursor);
     }
+
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public TextView TextViewName, TextViewDetail, TextViewYear;
@@ -25,6 +32,8 @@ public class DbCursorAdapter extends CursorRecyclerViewAdapter<DbCursorAdapter.V
             TextViewDetail = (TextView) view.findViewById(R.id.textDetail);
             TextViewYear = (TextView) view.findViewById(R.id.textYear);
             imageView = (ImageView) view.findViewById(R.id.image_row);
+
+
         }
     }
 
@@ -37,12 +46,27 @@ public class DbCursorAdapter extends CursorRecyclerViewAdapter<DbCursorAdapter.V
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder viewHolder, Cursor cursor) {
+    public void onBindViewHolder(final ViewHolder viewHolder, final Cursor cursor) {
         viewHolder.TextViewName.setText(cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_NAME_TITLE)));
         viewHolder.TextViewDetail.setText(cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_NAME_DETAIL)));
         viewHolder.TextViewYear.setText(cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_NAME_YEAR)));
 
+        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick( final View view) {
+                view.getContext().startActivity(new Intent(view.getContext(),FullscreenActivity.class));
+            }
+        });
+
+        viewHolder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                db.deleteInventory(cursor.getPosition());
+                return true;
+            }
+        });
     }
+
 }
 
 

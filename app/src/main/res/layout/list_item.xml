@@ -5,6 +5,7 @@
     android:padding="@dimen/cardview_default_elevation"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:id="@+id/cardView"
     card_view:cardCornerRadius="10dp"
     android:layout_margin="5dp"
     android:background="@color/cardview_light_background">
