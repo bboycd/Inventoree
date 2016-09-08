@@ -21,7 +21,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity  {
+public class MainActivity extends AppCompatActivity {
     FloatingActionButton fab_books, fab_wardrobe, fab_electronics, fab_media, fab;
     Animation fab_close, fab_open, rotate_anticlockwise, rotate_clockwise;
     boolean isOpen = false;
@@ -133,7 +133,11 @@ public class MainActivity extends AppCompatActivity  {
         });
     }
 
-
+//    @Override
+//    public void dListener(String selectedDialog) {
+//        Fragment_dialog fragment_dialog = (Fragment_dialog) getSupportFragmentManager().findFragmentById(R.id.fragment_dialog);
+//        fragment_dialog.show(getSupportFragmentManager(),"Alert Dialog Fragment");
+//    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -198,4 +202,6 @@ public class MainActivity extends AppCompatActivity  {
 
         return super.onOptionsItemSelected(item);
     }
+
+
 }
