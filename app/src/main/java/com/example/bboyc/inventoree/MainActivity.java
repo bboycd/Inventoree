@@ -51,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
         populateView();
 
+
         //ANIMATION LAYOUTS
         fab_close = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_close);
         fab_open = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_open);
