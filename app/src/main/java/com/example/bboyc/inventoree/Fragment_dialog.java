@@ -1,6 +1,7 @@
 package com.example.bboyc.inventoree;
 
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -12,6 +13,21 @@ import android.view.View;
 import android.widget.EditText;
 
 public class Fragment_dialog extends DialogFragment {
+
+    //DIALOG INTERFACE
+    DialogListener dialogListener;
+    public interface DialogListener {
+        public void dListener(String selectedDialog);
+    }
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        try {
+            dialogListener = (DialogListener) getActivity();
+        } catch (ClassCastException e) {
+            throw new ClassCastException(getActivity().toString() + " must implement DialogListener");
+        }
+    }
 
 
 

@@ -21,7 +21,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity  {
     FloatingActionButton fab_books, fab_wardrobe, fab_electronics, fab_media, fab;
     Animation fab_close, fab_open, rotate_anticlockwise, rotate_clockwise;
     boolean isOpen = false;
