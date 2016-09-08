@@ -16,12 +16,14 @@ public class DbCursorAdapter extends CursorRecyclerViewAdapter<DbCursorAdapter.V
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView mTextView;
+        public TextView TextViewName, TextViewDetail, TextViewYear;
         public ImageView imageView;
 
         public ViewHolder(View view) {
             super(view);
-            mTextView = (TextView) view.findViewById(R.id.text_row);
+            TextViewName = (TextView) view.findViewById(R.id.textName);
+            TextViewDetail = (TextView) view.findViewById(R.id.textDetail);
+            TextViewYear = (TextView) view.findViewById(R.id.textYear);
             imageView = (ImageView) view.findViewById(R.id.image_row);
         }
     }
@@ -36,7 +38,9 @@ public class DbCursorAdapter extends CursorRecyclerViewAdapter<DbCursorAdapter.V
 
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, Cursor cursor) {
-        viewHolder.mTextView.setText(cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_NAME_TITLE)));
+        viewHolder.TextViewName.setText(cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_NAME_TITLE)));
+        viewHolder.TextViewDetail.setText(cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_NAME_DETAIL)));
+        viewHolder.TextViewYear.setText(cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_NAME_YEAR)));
 //        MyListItem myListItem = MyListItem.fromCursor(cursor);
 //        viewHolder.mTextView.setText(myListItem.getName());
     }
