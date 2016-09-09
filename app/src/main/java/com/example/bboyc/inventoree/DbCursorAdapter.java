@@ -54,7 +54,7 @@ public class DbCursorAdapter extends CursorRecyclerViewAdapter<DbCursorAdapter.V
 
         Integer position = cursor.getPosition();
         viewHolder.cardView.setTag(position);
-
+        //INTENT TO DETAIL VIEW
         viewHolder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View view) {

@@ -51,6 +51,36 @@ public class MainActivityTest {
         onView(withId(R.id.dialog_editTextYear)).perform(clearText(), typeText("2012"), closeSoftKeyboard());
         onView(withText("OK")).perform(click());
 
+        onView(withId(R.id.fab_books)).perform(click());
+        onView(withId(R.id.dialog_editTextName)).perform(clearText(), typeText("Artemis Fowl"), closeSoftKeyboard());
+        onView(withId(R.id.dialog_editTextDetail)).perform(clearText(), typeText("Eion Colfer"), closeSoftKeyboard());
+        onView(withId(R.id.dialog_editTextYear)).perform(clearText(), typeText("2010"), closeSoftKeyboard());
+        onView(withText("OK")).perform(click());
+
+        onView(withId(R.id.fab_wardrobe)).perform(click());
+        onView(withId(R.id.dialog_editTextName)).perform(clearText(), typeText("Headphones"), closeSoftKeyboard());
+        onView(withId(R.id.dialog_editTextDetail)).perform(clearText(), typeText("Studio Monitors"), closeSoftKeyboard());
+        onView(withId(R.id.dialog_editTextYear)).perform(clearText(), typeText("2016"), closeSoftKeyboard());
+        onView(withText("OK")).perform(click());
+
+        onView(withId(R.id.fab_media)).perform(click());
+        onView(withId(R.id.dialog_editTextName)).perform(clearText(), typeText("Uncharted 4"), closeSoftKeyboard());
+        onView(withId(R.id.dialog_editTextDetail)).perform(clearText(), typeText("A Thieves End"), closeSoftKeyboard());
+        onView(withId(R.id.dialog_editTextYear)).perform(clearText(), typeText("2016"), closeSoftKeyboard());
+        onView(withText("OK")).perform(click());
+
+        onView(withId(R.id.fab_books)).perform(click());
+        onView(withId(R.id.dialog_editTextName)).perform(clearText(), typeText("Solid State Drive"), closeSoftKeyboard());
+        onView(withId(R.id.dialog_editTextDetail)).perform(clearText(), typeText("Samsung 250GB"), closeSoftKeyboard());
+        onView(withId(R.id.dialog_editTextYear)).perform(clearText(), typeText("2016"), closeSoftKeyboard());
+        onView(withText("OK")).perform(click());
+
+        onView(withId(R.id.fab_electronics)).perform(click());
+        onView(withId(R.id.dialog_editTextName)).perform(clearText(), typeText("Final Fantasy 7"), closeSoftKeyboard());
+        onView(withId(R.id.dialog_editTextDetail)).perform(clearText(), typeText("Blu-Ray Disc"), closeSoftKeyboard());
+        onView(withId(R.id.dialog_editTextYear)).perform(clearText(), typeText("2010"), closeSoftKeyboard());
+        onView(withText("OK")).perform(click());
+
 
 
     }
