@@ -5,6 +5,7 @@ public class Inventory {
     int id;
     String name;
     String detail;
+    String year;
 
     public int getId() {
         return id;
@@ -29,8 +30,13 @@ public class Inventory {
     public void setDetail(String detail) {
         this.detail = detail;
     }
-//    public static Inventory fromCursor(Cursor cursor){
-//
-//    }
+
+    public String getYear() {
+        return year;
+    }
+
+    public void setYear(String year) {
+        this.year = year;
+    }
 }
 
