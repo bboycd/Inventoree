@@ -13,6 +13,21 @@ import android.widget.EditText;
 
 public class Fragment_dialog extends DialogFragment {
 
+    //DIALOG INTERFACE
+//    DialogListener dialogListener;
+//    public interface DialogListener {
+//        public void dListener(String selectedDialog);
+//    }
+//    @Override
+//    public void onAttach(Context context) {
+//        super.onAttach(context);
+//        try {
+//            dialogListener = (DialogListener) getActivity();
+//        } catch (ClassCastException e) {
+//            throw new ClassCastException(getActivity().toString() + " must implement DialogListener");
+//        }
+//    }
+
 
 
     @NonNull
