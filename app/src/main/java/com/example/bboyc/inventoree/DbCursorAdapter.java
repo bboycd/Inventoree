@@ -57,14 +57,15 @@ public class DbCursorAdapter extends CursorRecyclerViewAdapter<DbCursorAdapter.V
             @Override
             public void onClick(final View view) {
                 view.getContext().startActivity(new Intent(view.getContext(),FullscreenActivity.class));
+
             }
         });
 
         viewHolder.cardView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(final View view) {
-
-                return true;
+                viewHolder.cardView.removeView(view.findViewById(R.id.cardView));
+            return true;
             }
         });
     }
