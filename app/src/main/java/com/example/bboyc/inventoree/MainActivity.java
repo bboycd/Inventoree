@@ -51,24 +51,6 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
         populateView();
 
-//    CardView cardView = (CardView) findViewById(R.id.cardView);
-//        cardView.setOnLongClickListener(new View.OnLongClickListener() {
-//            @Override
-//            public boolean onLongClick(View view) {
-//                Toast.makeText(MainActivity.this,"clicked",Toast.LENGTH_SHORT).show();
-//                return false;
-//            }
-//        });
-//        final CardView cardView = (CardView) findViewById(R.id.cardView);
-//        cardView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(MainActivity.this, FullscreenActivity.class);
-//                intent.putExtra();
-//                startActivity(intent);
-//            }
-//        });
-
         //ANIMATION LAYOUTS
         fab_close = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_close);
         fab_open = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_open);

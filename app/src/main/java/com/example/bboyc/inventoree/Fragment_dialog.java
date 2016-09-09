@@ -13,7 +13,7 @@ import android.widget.EditText;
 
 public class Fragment_dialog extends DialogFragment {
 
-    //DIALOG INTERFACE
+//    DIALOG INTERFACE
 //    DialogListener dialogListener;
 //    public interface DialogListener {
 //        public void dListener(String selectedDialog);
@@ -46,7 +46,7 @@ public class Fragment_dialog extends DialogFragment {
 
         builder.setView(view);
         builder.setIcon(R.mipmap.ic_launcher);
-        builder.setTitle("Books");
+        builder.setTitle("Add an Item");
 
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
