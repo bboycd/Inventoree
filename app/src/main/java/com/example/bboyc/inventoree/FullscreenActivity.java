@@ -1,6 +1,7 @@
 package com.example.bboyc.inventoree;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.ActionBar;
@@ -88,6 +89,8 @@ public class FullscreenActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_fullscreen);
+
+        Intent intent = getIntent();
 
 
         mVisible = true;

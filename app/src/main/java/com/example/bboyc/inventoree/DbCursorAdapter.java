@@ -1,10 +1,10 @@
 package com.example.bboyc.inventoree;
 
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,9 +13,6 @@ import android.widget.TextView;
 
 public class DbCursorAdapter extends CursorRecyclerViewAdapter<DbCursorAdapter.ViewHolder> {
 
-    private DatabaseHelper db;
-    private Context context;
-    public Cursor cursor;
 
     public DbCursorAdapter(Context context, Cursor cursor) {
 
@@ -58,19 +55,18 @@ public class DbCursorAdapter extends CursorRecyclerViewAdapter<DbCursorAdapter.V
 
         viewHolder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick( final View view) {
-                Log.e("fuck","Balls");
-//                view.getContext().startActivity(new Intent(view.getContext(),FullscreenActivity.class));
+            public void onClick(final View view) {
+                view.getContext().startActivity(new Intent(view.getContext(),FullscreenActivity.class));
             }
         });
 
-//        viewHolder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
-//            @Override
-//            public boolean onLongClick(View view) {
-//                db.deleteInventory();
-//                return true;
-//            }
-//        });
+        viewHolder.cardView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(final View view) {
+
+                return true;
+            }
+        });
     }
 
 }
