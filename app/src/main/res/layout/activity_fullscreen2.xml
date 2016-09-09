@@ -1,56 +1,68 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context="com.example.bboyc.inventoree.FullscreenActivity2"
+    android:background="@drawable/cww">
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:padding="@dimen/cardview_default_elevation"
+    card_view:cardCornerRadius="10dp"
     android:background="#0099cc"
+    android:foreground="?android:attr/selectableItemBackground"
     tools:context="com.example.bboyc.inventoree.FullscreenActivity2">
 
     <!-- The primary full-screen view. This can be replaced with whatever view
          is needed to present your content, e.g. VideoView, SurfaceView,
          TextureView, etc. -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="10dp"
+        >
     <TextView
         android:id="@+id/fullscreen_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
-        android:keepScreenOn="true"
-        android:text="@string/dummy_content"
-        android:textColor="#33b5e5"
-        android:textSize="50sp"
-        android:textStyle="bold" />
-
-    <TextView
-        android:id="@+id/fullscreen_content1"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:keepScreenOn="true"
-        android:text="@string/dummy_content"
-        android:textColor="#33b5e5"
-        android:textSize="50sp"
-        android:textStyle="bold" />
-
-    <TextView
-        android:id="@+id/fullscreen_content2"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="bottom"
-        android:keepScreenOn="true"
-        android:text="@string/dummy_content"
-        android:textColor="#33b5e5"
-        android:textSize="50sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true" />
 
     <TextView
         android:id="@+id/fullscreen_content3"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"/>
+
+    <TextView
+        android:id="@+id/fullscreen_content2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textSize="30sp"
+        android:layout_marginLeft="10dp"
+        android:layout_centerInParent="true" />
+
+    <TextView
+        android:id="@+id/fullscreen_content1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:gravity="right"
         android:keepScreenOn="true"
-        android:text="@string/dummy_content"
-        android:textColor="#33b5e5"
         android:textSize="50sp"
         android:textStyle="bold" />
+    </RelativeLayout>
 
     <!-- This FrameLayout insets its children based on system windows using
          android:fitsSystemWindows. -->
@@ -74,10 +86,10 @@
                 style="?metaButtonBarButtonStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/dummy_button" />
+                android:layout_weight="1" />
 
         </LinearLayout>
     </FrameLayout>
 
-</FrameLayout>
+</android.support.v7.widget.CardView>
+</android.support.design.widget.CoordinatorLayout>
