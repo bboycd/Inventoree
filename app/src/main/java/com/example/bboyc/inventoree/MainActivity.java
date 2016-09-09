@@ -59,6 +59,15 @@ public class MainActivity extends AppCompatActivity {
 //                return false;
 //            }
 //        });
+//        final CardView cardView = (CardView) findViewById(R.id.cardView);
+//        cardView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(MainActivity.this, FullscreenActivity.class);
+//                intent.putExtra();
+//                startActivity(intent);
+//            }
+//        });
 
         //ANIMATION LAYOUTS
         fab_close = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_close);
@@ -142,10 +151,6 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-//    public void cardClicked(View view) {
-//        Intent intent new Intent(this, FullscreenActivity.class);
-//        intent.putExtra()
-//    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -170,7 +175,10 @@ public class MainActivity extends AppCompatActivity {
     private void handleIntent(Intent intent){
         if (Intent.ACTION_SEARCH.equals(intent.getAction())){
             String query = intent.getStringExtra(SearchManager.QUERY);
-            DatabaseHelper.getInstance(this).getInventory(query);
+            Cursor cursor2 = DatabaseHelper.getInstance(this).getInventory(query);
+
+            adapter.changeCursor(cursor2);
+
             Toast.makeText(MainActivity.this,"Searching for " +query,Toast.LENGTH_SHORT).show();
 
 

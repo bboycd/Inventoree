@@ -78,7 +78,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(COLUMN_NAME_DETAIL, detail);
         values.put(COLUMN_NAME_YEAR, year);
 
-        db.update(TABLE_NAME, values, COL_ID + "=?",
+        db.update(TABLE_NAME, values, COL_ID + " =?",
                 new String[]{ String.valueOf(id)});
         return true;
     }
@@ -87,16 +87,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.query(TABLE_NAME,
-                new String[]
-                        {String.valueOf(COLUMNS)},
-                COL_ID + "=?",
-                new String[] {query},
+                COLUMNS,
+                COLUMN_NAME_TITLE + " LIKE ? ",
+                new String[] {"%" + query + "%"},
                 null,
                 null,
                 null,
                 null);
-        if (cursor != null)
-            cursor.moveToFirst();
+//        if (cursor != null)
+//            cursor.moveToFirst();
         return cursor;
     }
 

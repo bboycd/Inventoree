@@ -33,7 +33,14 @@ public class DbCursorAdapter extends CursorRecyclerViewAdapter<DbCursorAdapter.V
             TextViewYear = (TextView) view.findViewById(R.id.textYear);
             imageView = (ImageView) view.findViewById(R.id.image_row);
 
-
+//        view.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(view.getContext(),FullscreenActivity.class);
+//                view.getContext().startActivity(intent);
+//                Toast.makeText(view.getContext(),"test", Toast.LENGTH_SHORT).show();
+//            }
+//        });
         }
     }
 
