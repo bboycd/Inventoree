@@ -52,11 +52,23 @@ public class DbCursorAdapter extends CursorRecyclerViewAdapter<DbCursorAdapter.V
         viewHolder.TextViewDetail.setText(cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_NAME_DETAIL)));
         viewHolder.TextViewYear.setText(cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_NAME_YEAR)));
 
+        Integer position = cursor.getPosition();
+        viewHolder.cardView.setTag(position);
 
         viewHolder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View view) {
-                view.getContext().startActivity(new Intent(view.getContext(),FullscreenActivity.class));
+                Intent intent = new Intent(view.getContext(),FullscreenActivity2.class);
+                Cursor cursor = getCursor();
+                int position = ((Integer)view.getTag()).intValue();
+                cursor.moveToPosition(position);
+                String title = cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_NAME_TITLE));
+                String detail = cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_NAME_DETAIL));
+                String year = cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_NAME_YEAR));
+                intent.putExtra("title", title);
+                intent.putExtra("detail", detail);
+                intent.putExtra("year", year);
+                view.getContext().startActivity(intent);
 
             }
         });
