@@ -19,9 +19,7 @@
         android:padding="10dp"
         android:orientation="vertical"
         android:background="@color/cardview_light_background"
-        android:contextClickable="true"
-        android:clickable="true"
-        android:onClick="">
+        >
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -36,7 +34,9 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:id="@+id/textName"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"/>
+            android:layout_alignParentTop="true"
+            android:clickable="true"
+            />
 
         <TextView
             android:layout_width="wrap_content"

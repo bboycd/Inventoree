@@ -1,9 +1,10 @@
 package com.example.bboyc.inventoree;
 
 import android.content.Context;
-import android.content.Intent;
 import android.database.Cursor;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,22 +26,18 @@ public class DbCursorAdapter extends CursorRecyclerViewAdapter<DbCursorAdapter.V
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public TextView TextViewName, TextViewDetail, TextViewYear;
         public ImageView imageView;
+        private CardView cardView;
+
 
         public ViewHolder(View view) {
             super(view);
+
+            cardView = (CardView) view.findViewById(R.id.cardView);
             TextViewName = (TextView) view.findViewById(R.id.textName);
             TextViewDetail = (TextView) view.findViewById(R.id.textDetail);
             TextViewYear = (TextView) view.findViewById(R.id.textYear);
             imageView = (ImageView) view.findViewById(R.id.image_row);
 
-//        view.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(view.getContext(),FullscreenActivity.class);
-//                view.getContext().startActivity(intent);
-//                Toast.makeText(view.getContext(),"test", Toast.LENGTH_SHORT).show();
-//            }
-//        });
         }
     }
 
@@ -58,20 +55,22 @@ public class DbCursorAdapter extends CursorRecyclerViewAdapter<DbCursorAdapter.V
         viewHolder.TextViewDetail.setText(cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_NAME_DETAIL)));
         viewHolder.TextViewYear.setText(cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_NAME_YEAR)));
 
-        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+
+        viewHolder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick( final View view) {
-                view.getContext().startActivity(new Intent(view.getContext(),FullscreenActivity.class));
+                Log.e("fuck","Balls");
+//                view.getContext().startActivity(new Intent(view.getContext(),FullscreenActivity.class));
             }
         });
 
-        viewHolder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View view) {
-                db.deleteInventory(cursor.getPosition());
-                return true;
-            }
-        });
+//        viewHolder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+//            @Override
+//            public boolean onLongClick(View view) {
+//                db.deleteInventory();
+//                return true;
+//            }
+//        });
     }
 
 }

@@ -149,6 +149,8 @@ public class MainActivity extends AppCompatActivity {
                 Fragment_dialog.show(fragmentManager, "Alert Dialog Fragment");
             }
         });
+
+
     }
 
 
