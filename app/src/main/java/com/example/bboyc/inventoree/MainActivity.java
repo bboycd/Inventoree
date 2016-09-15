@@ -108,6 +108,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Fragment_dialog Fragment_dialog = new Fragment_dialog();
                 Fragment_dialog.show(fragmentManager, "Alert Dialog Fragment");
+
             }
         });
         fab_media.setOnClickListener(new View.OnClickListener() {

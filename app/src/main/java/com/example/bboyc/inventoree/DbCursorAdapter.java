@@ -3,13 +3,19 @@ package com.example.bboyc.inventoree;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.provider.SyncStateContract;
 import android.support.v7.widget.CardView;
+import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class DbCursorAdapter extends CursorRecyclerViewAdapter<DbCursorAdapter.ViewHolder> {
 
@@ -24,6 +30,7 @@ public class DbCursorAdapter extends CursorRecyclerViewAdapter<DbCursorAdapter.V
         public TextView TextViewName, TextViewDetail, TextViewYear;
         public ImageView imageView;
         private CardView cardView;
+        public ImageButton imageButton;
 
 
         public ViewHolder(View view) {
@@ -34,6 +41,7 @@ public class DbCursorAdapter extends CursorRecyclerViewAdapter<DbCursorAdapter.V
             TextViewDetail = (TextView) view.findViewById(R.id.textDetail);
             TextViewYear = (TextView) view.findViewById(R.id.textYear);
             imageView = (ImageView) view.findViewById(R.id.image_row);
+            imageButton = (ImageButton) view.findViewById(R.id.imageButton);
 
         }
     }
@@ -52,15 +60,15 @@ public class DbCursorAdapter extends CursorRecyclerViewAdapter<DbCursorAdapter.V
         viewHolder.TextViewDetail.setText(cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_NAME_DETAIL)));
         viewHolder.TextViewYear.setText(cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_NAME_YEAR)));
 
-        Integer position = cursor.getPosition();
+        final Integer position = cursor.getPosition();
         viewHolder.cardView.setTag(position);
         //INTENT TO DETAIL VIEW
         viewHolder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View view) {
-                Intent intent = new Intent(view.getContext(),FullscreenActivity2.class);
+                Intent intent = new Intent(view.getContext(), FullscreenActivity2.class);
                 Cursor cursor = getCursor();
-                int position = ((Integer)view.getTag()).intValue();
+                int position = ((Integer) view.getTag()).intValue();
                 cursor.moveToPosition(position);
                 String title = cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_NAME_TITLE));
                 String detail = cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_NAME_DETAIL));
@@ -77,11 +85,36 @@ public class DbCursorAdapter extends CursorRecyclerViewAdapter<DbCursorAdapter.V
             @Override
             public boolean onLongClick(final View view) {
                 viewHolder.cardView.removeView(view.findViewById(R.id.cardView));
-            return true;
+                return true;
+            }
+        });
+
+        viewHolder.imageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showPopupMenu(viewHolder.imageButton, position);
             }
         });
     }
 
+    private void showPopupMenu(View view, int position) {
+        PopupMenu popupMenu = new PopupMenu(view.getContext(), view);
+        MenuInflater inflater = popupMenu.getMenuInflater();
+        inflater.inflate(R.menu.popup_menu, popupMenu.getMenu());
+        popupMenu.setOnMenuItemClickListener(new MyMenuItemClickListener(position));
+        popupMenu.show();
+    }
+
+    class MyMenuItemClickListener implements PopupMenu.OnMenuItemClickListener {
+
+
+        @Override
+        public boolean onMenuItemClick(MenuItem item) {
+
+
+            return false;
+        }
+    }
 }
 
 
