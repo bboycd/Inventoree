@@ -11,9 +11,9 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class DbCursorAdapter extends CursorRecyclerViewAdapter<DbCursorAdapter.ViewHolder> {
-
 
     public DbCursorAdapter(Context context, Cursor cursor) {
 
@@ -90,41 +90,14 @@ public class DbCursorAdapter extends CursorRecyclerViewAdapter<DbCursorAdapter.V
             @Override
             public void onClick(View view) {
 
+                Toast.makeText(view.getContext(), "wtf", Toast.LENGTH_SHORT).show();
+
                 DatabaseHelper helper = DatabaseHelper.getInstance(view.getContext());
-//                showPopupMenu(viewHolder.imageButton, position);
                 int id = cursor.getInt(cursor.getColumnIndex(DatabaseHelper.COL_ID));
                 helper.deleteInventory(id);
-
-
-                Intent intent = new Intent(view.getContext(), MainActivity.class);
-
             }
         });
     }
-
-//    private void showPopupMenu(View view, int position) {
-////        PopupMenu popupMenu = new PopupMenu(view.getContext(), view);
-////        MenuInflater inflater = popupMenu.getMenuInflater();
-////        inflater.inflate(R.menu.popup_menu, popupMenu.getMenu());
-////        popupMenu.setOnMenuItemClickListener(new MyMenuItemClickListener(position));
-////        popupMenu.show();
-//    }
-//
-//    class MyMenuItemClickListener implements PopupMenu.OnMenuItemClickListener {
-//
-//
-//        @Override
-//        public boolean onMenuItemClick(MenuItem item) {
-//            switch (item.getItemId()) {
-//                case R.id.imageButton:
-//                    getCursor().getPosition();
-//
-//
-//                return false;
-//            }
-//        });
-
-//    }
 }
 
 
