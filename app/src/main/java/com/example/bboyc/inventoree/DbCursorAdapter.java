@@ -86,7 +86,7 @@ public class DbCursorAdapter extends CursorRecyclerViewAdapter<DbCursorAdapter.V
                 return true;
             }
         });
-
+        //DELETE FUNCTION
         viewHolder.imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
