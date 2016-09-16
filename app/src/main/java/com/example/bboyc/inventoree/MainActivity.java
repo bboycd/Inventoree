@@ -26,13 +26,15 @@ public class MainActivity extends AppCompatActivity {
     Animation fab_close, fab_open, rotate_anticlockwise, rotate_clockwise;
     boolean isOpen = false;
     RecyclerView recyclerView;
-    DbCursorAdapter adapter;
+    static DbCursorAdapter adapter;
+//    Context context = this;
     FragmentManager fragmentManager = getSupportFragmentManager();
 
     public void populateView(){
         Cursor cursor = DatabaseHelper.getInstance(this).getAllInventory();
         adapter.changeCursor(cursor);
     }
+
 
 
 
@@ -190,8 +192,6 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
         }
-
-
         return super.onOptionsItemSelected(item);
     }
 }
