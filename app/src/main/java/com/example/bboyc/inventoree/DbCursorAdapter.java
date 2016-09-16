@@ -3,19 +3,14 @@ package com.example.bboyc.inventoree;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
-import android.provider.SyncStateContract;
 import android.support.v7.widget.CardView;
-import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class DbCursorAdapter extends CursorRecyclerViewAdapter<DbCursorAdapter.ViewHolder> {
 
@@ -51,6 +46,7 @@ public class DbCursorAdapter extends CursorRecyclerViewAdapter<DbCursorAdapter.V
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.list_item, parent, false);
         ViewHolder vh = new ViewHolder(itemView);
+
         return vh;
     }
 
@@ -59,6 +55,7 @@ public class DbCursorAdapter extends CursorRecyclerViewAdapter<DbCursorAdapter.V
         viewHolder.TextViewName.setText(cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_NAME_TITLE)));
         viewHolder.TextViewDetail.setText(cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_NAME_DETAIL)));
         viewHolder.TextViewYear.setText(cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_NAME_YEAR)));
+
 
         final Integer position = cursor.getPosition();
         viewHolder.cardView.setTag(position);
@@ -92,30 +89,42 @@ public class DbCursorAdapter extends CursorRecyclerViewAdapter<DbCursorAdapter.V
         viewHolder.imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showPopupMenu(viewHolder.imageButton, position);
+
+                DatabaseHelper helper = DatabaseHelper.getInstance(view.getContext());
+//                showPopupMenu(viewHolder.imageButton, position);
+                int id = cursor.getInt(cursor.getColumnIndex(DatabaseHelper.COL_ID));
+                helper.deleteInventory(id);
+
+
+                Intent intent = new Intent(view.getContext(), MainActivity.class);
+
             }
         });
     }
 
-    private void showPopupMenu(View view, int position) {
-        PopupMenu popupMenu = new PopupMenu(view.getContext(), view);
-        MenuInflater inflater = popupMenu.getMenuInflater();
-        inflater.inflate(R.menu.popup_menu, popupMenu.getMenu());
-        popupMenu.setOnMenuItemClickListener(new MyMenuItemClickListener(position));
-        popupMenu.show();
-    }
+//    private void showPopupMenu(View view, int position) {
+////        PopupMenu popupMenu = new PopupMenu(view.getContext(), view);
+////        MenuInflater inflater = popupMenu.getMenuInflater();
+////        inflater.inflate(R.menu.popup_menu, popupMenu.getMenu());
+////        popupMenu.setOnMenuItemClickListener(new MyMenuItemClickListener(position));
+////        popupMenu.show();
+//    }
+//
+//    class MyMenuItemClickListener implements PopupMenu.OnMenuItemClickListener {
+//
+//
+//        @Override
+//        public boolean onMenuItemClick(MenuItem item) {
+//            switch (item.getItemId()) {
+//                case R.id.imageButton:
+//                    getCursor().getPosition();
+//
+//
+//                return false;
+//            }
+//        });
 
-    class MyMenuItemClickListener implements PopupMenu.OnMenuItemClickListener {
-
-
-        @Override
-        public boolean onMenuItemClick(MenuItem item) {
-
-
-            return false;
-        }
-    }
+//    }
 }
-
 
 
