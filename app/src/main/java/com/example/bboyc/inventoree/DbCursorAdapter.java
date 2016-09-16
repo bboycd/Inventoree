@@ -90,7 +90,7 @@ public class DbCursorAdapter extends CursorRecyclerViewAdapter<DbCursorAdapter.V
             @Override
             public void onClick(View view) {
 
-                Toast.makeText(view.getContext(), "wtf", Toast.LENGTH_SHORT).show();
+                Toast.makeText(view.getContext(), "fix me", Toast.LENGTH_SHORT).show();
 
                 DatabaseHelper helper = DatabaseHelper.getInstance(view.getContext());
                 int id = cursor.getInt(cursor.getColumnIndex(DatabaseHelper.COL_ID));
